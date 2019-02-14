@@ -23,7 +23,7 @@ class ViewController: UIViewController, UITableViewDataSource {
         let item3 = Item(name: "bread", quantity: 7)
         items.append(item3)
     }
-   
+    
     @IBAction func addNewItemButtonPressed(_ sender: UIBarButtonItem) {
         if let newItemName = newItemTextField.text, newItemName != "" {
             let newItem = Item(name: newItemName, quantity: 1)
@@ -38,13 +38,16 @@ class ViewController: UIViewController, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "myCell") {
-       let currentItemName = items[indexPath.row].name
-        cell.textLabel?.text = currentItemName
-        return cell
+            let currentItemName = items[indexPath.row].name
+            let currentItemQuantity = items[indexPath.row].quantity
+            cell.detailTextLabel?.text = "quantity: \(currentItemQuantity)"
+            cell.textLabel?.text = currentItemName
+            return cell
         } else {
             return UITableViewCell()
         }
     }
 }
 
-    
+
+
